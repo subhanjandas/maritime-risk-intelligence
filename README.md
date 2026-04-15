@@ -22,6 +22,31 @@ A core challenge of this project was bridging the gap between high-volume histor
 #### **Why this matters for Supply Chain Risk:**
 By combining these two sources, the pipeline isn't just a static analysis tool—it’s a framework capable of **Backtesting** (benchmarking against historical norms) and **Live Monitoring** (detecting immediate anomalies). This dual-path approach is critical for predicting harbor congestion and calculating "Time-to-Arrival" metrics with high statistical confidence.
 
+### 📐 Formal Risk Model
+To quantify maritime fragility, the system applies a heuristic risk function $R(v)$ for any given vessel $v$. The risk state is determined by the spatial relationship between the vessel's coordinates and the harbor's restricted polygons.
+
+The risk score is defined as:
+
+$$
+R(v) = 
+\begin{cases} 
+1.0 & \text{if } ST\_Intersects(v_{point}, P_{harbor}) \\
+0.5 & \text{if } ST\_DWithin(v_{point}, P_{harbor}, 5000) \\
+0.0 & \text{otherwise}
+\end{cases}
+$$
+
+Where:
+* $v_{point}$ is the materialized GEOGRAPHY point of the vessel.
+* $P_{harbor}$ represents the multi-polygon of the protected port entrance.
+* $ST\_DWithin$ calculates if the vessel is within a $5000m$ geodesic buffer.
+
+We also calculate the **Kinematic Anomaly Score** ($A$) using the Z-score of the velocity:
+
+$$A = \left| \frac{x - \mu}{\sigma} \right|$$
+
+Vessels where $A > 3$ are flagged for manual review, as they represent statistically significant deviations from the operational baseline of the channel.
+
 ## 🏗️ System Architecture
 The pipeline is designed for **scalability, idempotency, and low-latency analytics**, utilizing a decoupled ingestion and transformation strategy.
 
