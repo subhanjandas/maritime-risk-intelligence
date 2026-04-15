@@ -22,7 +22,7 @@ A core challenge of this project was bridging the gap between high-volume histor
 #### **Why this matters for Supply Chain Risk:**
 By combining these two sources, the pipeline isn't just a static analysis tool—it’s a framework capable of **Backtesting** (benchmarking against historical norms) and **Live Monitoring** (detecting immediate anomalies). This dual-path approach is critical for predicting harbor congestion and calculating "Time-to-Arrival" metrics with high statistical confidence.
 
-### 📐 Formal Risk Model
+## 📐 Formal Risk Model
 To quantify maritime fragility, the system applies a heuristic risk function $R(v)$ for any given vessel $v$. The risk state is determined by the spatial relationship between the vessel's coordinates and the harbor's restricted polygons.
 
 The risk score is defined as:
