@@ -4,6 +4,24 @@
 ## 📌 Executive Summary
 This project demonstrates the engineering of a high-throughput geospatial data warehouse using **Google Cloud Platform (BigQuery)** and **Python**. By processing **8.5 Million+ rows** of raw NOAA AIS telemetry, the system identifies maritime risk anomalies and harbor congestion through a three-tier Medallion architecture.
 
+## 📡 Data Lineage & Sourcing
+A core challenge of this project was bridging the gap between high-volume historical archives and low-latency real-time streams. The system integrates two distinct data channels provided by **NOAA (National Oceanic and Atmospheric Administration)**.
+
+### 🗄️ 1. Historical Backfill (The "Bulk" Engine)
+* **Source:** [NOAA Office for Coastal Management](https://coast.noaa.gov/htdata/CMSP/AISData/)
+* **Format:** High-density CSV archives (Zstandard compressed).
+* **Scale:** Utilized a **1.5GB+ daily slice** containing approximately **8.5 million telemetry records**. 
+* **Engineering Challenge:** This data is "cold" and frequently contains sensor noise or signal drift. I architected the **Bronze-to-Silver DML logic** specifically to handle the schema enforcement and coordinate normalization required to turn these massive archives into queryable assets.
+
+### 🌐 2. Real-Time Telemetry (The "Live" Edge)
+* **Source:** [NOAA AIS Search API (WebSockets)](https://www.navcen.uscg.gov/ais-search-api)
+* **Protocol:** `wss://stream.ais.cloud.noaa.gov/v1/advisories`
+* **Format:** Real-time JSON payloads.
+* **Engineering Challenge:** Unlike batch data, the live stream is volatile and prone to "bursty" traffic. I developed the **Object-Oriented Ingestion Engine** (`src/ingestion.py`) to manage the WebSocket lifecycle, handle involuntary disconnections, and parse nested metadata pings as they arrive from the US Coast Guard’s terrestrial and satellite transponders.
+
+#### **Why this matters for Supply Chain Risk:**
+By combining these two sources, the pipeline isn't just a static analysis tool—it’s a framework capable of **Backtesting** (benchmarking against historical norms) and **Live Monitoring** (detecting immediate anomalies). This dual-path approach is critical for predicting harbor congestion and calculating "Time-to-Arrival" metrics with high statistical confidence.
+
 ## 🏗️ System Architecture
 The pipeline is designed for **scalability, idempotency, and low-latency analytics**, utilizing a decoupled ingestion and transformation strategy.
 
