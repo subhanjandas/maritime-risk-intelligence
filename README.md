@@ -76,6 +76,7 @@ To translate raw coordinates into actionable intelligence, I developed a risk-sc
 * **Kinematic Filtering:** The dashboard allows for filtering by **Speed Over Ground (SOG)**, helping analysts distinguish between vessels at anchor versus those actively navigating.
 
 #### **My Perspective:**
-In a production environment, this dashboard acts as a **Supply Chain Early Warning System**. By isolating the 11 unique vessels that entered the "Critical" zone from a pool of 8.5 million pings, we reduce the noise for logistics operators by **99.9%**, allowing them to focus exclusively on high-impact maritime events.
+
+* **Prod:** In a production environment, this dashboard acts as a **Supply Chain Early Warning System**. By isolating the 11 unique vessels that entered the "Critical" zone from a pool of 8.5 million pings, we reduce the noise for logistics operators by **99.9%**, allowing them to focus exclusively on high-impact maritime events.
 ---
 *Developed by Subhanjan Das*
