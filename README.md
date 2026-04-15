@@ -67,7 +67,7 @@ The project includes a multidimensional Exploratory Data Analysis suite that goe
 ## 📍 Geospatial Risk Visualization
 To translate raw coordinates into actionable intelligence, I developed a risk-scoring dashboard using **BigQuery Geo Viz**. This interface serves as the final consumption layer for the **Gold Table** logic.
 
-![Maritime Risk Dashboard](your_screenshot_filename.png)
+![Maritime Risk Dashboard](Maritime-risk-intelligence-dashboard.png)
 
 ### 🧩 Visualization Logic & Features
 * **Spatial Materialization:** The map renders `ST_GEOGPOINT` objects materialized in the Silver layer, allowing for sub-second rendering of millions of historical pings.
