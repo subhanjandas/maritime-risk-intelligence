@@ -64,5 +64,18 @@ The project includes a multidimensional Exploratory Data Analysis suite that goe
 * **Risk Identification:** Isolated **11 Critical Harbor Entries** and **5 Warning Approximations** from 8.5M pings.
 * **Performance:** Optimized spatial queries to scan millions of records in sub-20 seconds via clustering.
 
+## 📍 Geospatial Risk Visualization
+To translate raw coordinates into actionable intelligence, I developed a risk-scoring dashboard using **BigQuery Geo Viz**. This interface serves as the final consumption layer for the **Gold Table** logic.
+
+![Maritime Risk Dashboard](your_screenshot_filename.png)
+
+### 🧩 Visualization Logic & Features
+* **Spatial Materialization:** The map renders `ST_GEOGPOINT` objects materialized in the Silver layer, allowing for sub-second rendering of millions of historical pings.
+* **Risk Categorization (The "Gold" Logic):** * **🔴 Critical (Red):** Vessels successfully intersecting the defined **Harbor Entry Polygon**. This indicates a high-probability docking event or chokepoint transition.
+    * **🟡 Warning (Yellow):** Vessels within a 5km buffer of the port, identified via the `ST_DWITHIN` function, signaling an active approach.
+* **Kinematic Filtering:** The dashboard allows for filtering by **Speed Over Ground (SOG)**, helping analysts distinguish between vessels at anchor versus those actively navigating.
+
+#### **My Perspective:**
+In a production environment, this dashboard acts as a **Supply Chain Early Warning System**. By isolating the 11 unique vessels that entered the "Critical" zone from a pool of 8.5 million pings, we reduce the noise for logistics operators by **99.9%**, allowing them to focus exclusively on high-impact maritime events.
 ---
 *Developed by Subhanjan Das*
