@@ -71,7 +71,8 @@ To translate raw coordinates into actionable intelligence, I developed a risk-sc
 
 ### 🧩 Visualization Logic & Features
 * **Spatial Materialization:** The map renders `ST_GEOGPOINT` objects materialized in the Silver layer, allowing for sub-second rendering of millions of historical pings.
-* **Risk Categorization (The "Gold" Logic):** * **🔴 Critical (Red):** Vessels successfully intersecting the defined **Harbor Entry Polygon**. This indicates a high-probability docking event or chokepoint transition.
+* **Risk Categorization (The "Gold" Logic):**
+    * **🔴 Critical (Red):** Vessels successfully intersecting the defined **Harbor Entry Polygon**. This indicates a high-probability docking event or chokepoint transition.
     * **🟡 Warning (Yellow):** Vessels within a 5km buffer of the port, identified via the `ST_DWITHIN` function, signaling an active approach.
 * **Kinematic Filtering:** The dashboard allows for filtering by **Speed Over Ground (SOG)**, helping analysts distinguish between vessels at anchor versus those actively navigating.
 
