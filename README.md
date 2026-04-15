@@ -47,4 +47,4 @@ The project includes a multidimensional Exploratory Data Analysis suite that goe
 * **Performance:** Optimized spatial queries to scan millions of records in sub-20 seconds via clustering.
 
 ---
-*Developed by Subhanjan Das | Data Scientist & SME*
+*Developed by Subhanjan Das*
